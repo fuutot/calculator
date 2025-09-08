@@ -1,8 +1,8 @@
 export default function Home() {
   return (
     <div className="calculator-container">
-      <div className="calculator-display">{"0"}</div>
-      <div className="calculator-result">{"0"}</div>
+      <Display />
+      <Result />
       <div className="calculator-buttons">
         {[
           "7",
@@ -35,4 +35,14 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export function Display() {
+  // 計算式を表示するコンポーネント
+  return <div className="calculator-display">{"0"}</div>;
+}
+
+export function Result() {
+  // 計算結果を表示するコンポーネント
+  return <div className="calculator-result">{"0"}</div>;
 }
