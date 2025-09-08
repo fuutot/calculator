@@ -1,8 +1,12 @@
 "use client";
 import { useState } from "react";
+import { Expression } from "./expression";
 
 export default function Home() {
-  const [expression, setExpression] = useState("1");
+  const DEFAULT_EXPRESSION = "0";
+  const [expression, setExpression] = useState(
+    new Expression(DEFAULT_EXPRESSION),
+  );
 
   return (
     <div className="calculator-container">
@@ -42,7 +46,7 @@ export default function Home() {
           label="Clear"
           className="calculator-btn calculator-clear"
           onClick={() => {
-            setExpression("0");
+            setExpression(new Expression(DEFAULT_EXPRESSION));
           }}
         />
       </div>
@@ -50,9 +54,9 @@ export default function Home() {
   );
 }
 
-export function Display({ expression }: { expression: string }) {
+export function Display({ expression }: { expression: Expression }) {
   // 計算式を表示するコンポーネント
-  return <div className="calculator-display">{expression}</div>;
+  return <div className="calculator-display">{expression.toString()}</div>;
 }
 
 export function Result() {
