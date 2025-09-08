@@ -12,7 +12,7 @@ export default function Home() {
           "4",
           "5",
           "6",
-          "X",
+          "x",
           "1",
           "2",
           "3",
@@ -22,16 +22,18 @@ export default function Home() {
           "=",
           "+",
         ].map((btn) => (
-          <button
+          <CalculatorButton
             key={btn}
+            label={btn}
             className={
               btn === "=" ? "calculator-btn calculator-equal" : "calculator-btn"
             }
-          >
-            {btn}
-          </button>
+          />
         ))}
-        <button className="calculator-btn calculator-clear">Clear</button>
+        <CalculatorButton
+          label="Clear"
+          className="calculator-btn calculator-clear"
+        />
       </div>
     </div>
   );
@@ -45,4 +47,13 @@ export function Display() {
 export function Result() {
   // 計算結果を表示するコンポーネント
   return <div className="calculator-result">{"0"}</div>;
+}
+
+type CalculatorButtonProps = {
+  label: string; // ボタンに表示するテキスト
+  className: string; // ボタンのクラス名
+};
+
+export function CalculatorButton({ label, className }: CalculatorButtonProps) {
+  return <button className={className}>{label}</button>;
 }
