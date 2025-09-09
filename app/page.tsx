@@ -38,7 +38,10 @@ export default function Home() {
               btn === "=" ? "calculator-btn calculator-equal" : "calculator-btn"
             }
             onClick={() => {
-              /* クリック時の処理 */
+              if (btn !== "=") {
+                setExpression(expression.add(btn));
+              }
+              // = の場合の処理は今後追加
             }}
           />
         ))}
