@@ -13,6 +13,10 @@ export class Expression {
     return true;
   }
 
+  add(element: string): Expression {
+    return new Expression(this.expr + element); // バリデーションはコンストラクタで行う
+  }
+
   toString(): string {
     return this.expr;
   }
