@@ -3,10 +3,7 @@ import { useState } from "react";
 import { Expression } from "./expression";
 
 export default function Home() {
-  const DEFAULT_EXPRESSION = "0";
-  const [expression, setExpression] = useState(
-    new Expression(DEFAULT_EXPRESSION),
-  );
+  const [expression, setExpression] = useState(new Expression());
 
   return (
     <div className="calculator-container">
@@ -49,7 +46,7 @@ export default function Home() {
           label="Clear"
           className="calculator-btn calculator-clear"
           onClick={() => {
-            setExpression(new Expression(DEFAULT_EXPRESSION));
+            setExpression(expression.clear());
           }}
         />
       </div>
