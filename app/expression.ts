@@ -10,7 +10,32 @@ export class Expression {
   }
 
   static isValid(expr: string): boolean {
-    // ここにバリデーションロジックを追加
+    // 想定外の文字が含まれていないかをチェック
+    if (!Expression.isExpectedChars(expr)) {
+      return false;
+    }
+    // 数字や演算子が連続していないかをチェック
+    if (!Expression.isValidSequence(expr)) {
+      return false;
+    }
+    return true;
+  }
+
+  private static isExpectedChars(expr: string): boolean {
+    const validChars = /^[0-9+\-*/.]+$/;
+    return validChars.test(expr);
+  }
+
+  private static isValidSequence(expr: string): boolean {
+    // 演算子が連続していないかをチェック
+    const invalidSequence = /[+\-*/.]{2,}/;
+    if (invalidSequence.test(expr)) {
+      return false;
+    }
+    // 先頭に演算子が来ていないかをチェック
+    if (/[+\-*/.]/.test(expr.charAt(0))) {
+      return false;
+    }
     return true;
   }
 
