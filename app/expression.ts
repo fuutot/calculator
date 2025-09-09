@@ -14,7 +14,7 @@ export class Expression {
     if (!Expression.isExpectedChars(expr)) {
       return false;
     }
-    // 数字や演算子が連続していないかをチェック
+    // 先頭が演算子になっていないか、演算子が連続していないかをチェック
     if (!Expression.isValidSequence(expr)) {
       return false;
     }
