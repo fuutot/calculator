@@ -1,3 +1,5 @@
+import { e, evaluate } from "mathjs";
+
 export class Expression {
   private expr: string;
   private result: string;
@@ -76,7 +78,7 @@ export class Expression {
   calculate(): Expression {
     try {
       // 計算を実行
-      const result = eval(this.expr).toString();
+      const result = evaluate(this.expr).toString();
       return new Expression(result, result);
     } catch {
       return new Expression(this.expr, "Error");
