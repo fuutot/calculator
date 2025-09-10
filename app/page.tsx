@@ -4,11 +4,12 @@ import { Expression } from "./expression";
 
 export default function Home() {
   const [expression, setExpression] = useState(new Expression());
+  const [result, setResult] = useState("0");
 
   return (
     <div className="calculator-container">
       <Display expression={expression} />
-      <Result />
+      <Result result={result} />
       <div className="calculator-buttons">
         {[
           "7",
@@ -59,9 +60,9 @@ export function Display({ expression }: { expression: Expression }) {
   return <div className="calculator-display">{expression.toString()}</div>;
 }
 
-export function Result() {
+export function Result({ result }: { result: string }) {
   // 計算結果を表示するコンポーネント
-  return <div className="calculator-result">{"0"}</div>;
+  return <div className="calculator-result">{result}</div>;
 }
 
 type CalculatorButtonProps = {
