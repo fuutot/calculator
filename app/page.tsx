@@ -1,7 +1,13 @@
+"use client";
+import { useState } from "react";
+import { Expression } from "./expression";
+
 export default function Home() {
+  const [expression, setExpression] = useState(new Expression());
+
   return (
     <div className="calculator-container">
-      <Display />
+      <Display expression={expression} />
       <Result />
       <div className="calculator-buttons">
         {[
@@ -12,7 +18,7 @@ export default function Home() {
           "4",
           "5",
           "6",
-          "x",
+          "*",
           "1",
           "2",
           "3",
@@ -28,20 +34,29 @@ export default function Home() {
             className={
               btn === "=" ? "calculator-btn calculator-equal" : "calculator-btn"
             }
+            onClick={() => {
+              if (btn !== "=") {
+                setExpression(expression.add(btn));
+              }
+              // = の場合の処理は今後追加
+            }}
           />
         ))}
         <CalculatorButton
           label="Clear"
           className="calculator-btn calculator-clear"
+          onClick={() => {
+            setExpression(expression.clear());
+          }}
         />
       </div>
     </div>
   );
 }
 
-export function Display() {
+export function Display({ expression }: { expression: Expression }) {
   // 計算式を表示するコンポーネント
-  return <div className="calculator-display">{"0"}</div>;
+  return <div className="calculator-display">{expression.toString()}</div>;
 }
 
 export function Result() {
@@ -52,8 +67,17 @@ export function Result() {
 type CalculatorButtonProps = {
   label: string; // ボタンに表示するテキスト
   className: string; // ボタンのクラス名
+  onClick: () => void; // ボタンがクリックされたときの処理
 };
 
-export function CalculatorButton({ label, className }: CalculatorButtonProps) {
-  return <button className={className}>{label}</button>;
+export function CalculatorButton({
+  label,
+  className,
+  onClick,
+}: CalculatorButtonProps) {
+  return (
+    <button className={className} onClick={onClick}>
+      {label}
+    </button>
+  );
 }
