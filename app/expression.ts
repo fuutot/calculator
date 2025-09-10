@@ -40,8 +40,14 @@ export class Expression {
   }
 
   add(element: string): Expression {
+    let newExpr = this.expr + element;
+    // 式が0の場合、最初の入力が.以外なら置き換える
+    if (this.expr === Expression.DEFAULT_EXPRESSION && element !== ".") {
+      newExpr = element;
+    }
+
     try {
-      return new Expression(this.expr + element); // バリデーションはコンストラクタで行う
+      return new Expression(newExpr); // バリデーションはコンストラクタで行う
     } catch (_) {
       return this; // エラーが発生した場合は変更しない
     }
