@@ -18,6 +18,10 @@ export class Expression {
     if (!Expression.isValidSequence(expr)) {
       return false;
     }
+    // 無効な数が含まれていないかをチェック
+    if (!Expression.hasValidNumber(expr)) {
+      return false;
+    }
     return true;
   }
 
@@ -39,9 +43,19 @@ export class Expression {
     return true;
   }
 
+  private static hasValidNumber(expr: string): boolean {
+    // 01, 02, 003 など0で始まる不正な数値が含まれていないかチェック
+    // ただし0単体や0.1などは許可
+    const invalidZeroNumber = /(^|[+\-*/(])0[0-9]+/;
+    if (invalidZeroNumber.test(expr)) {
+      return false;
+    }
+    return true;
+  }
+
   add(element: string): Expression {
     let newExpr = this.expr + element;
-    // 式が0の場合、最初の入力が.以外なら置き換える
+    // 式が0の場合、.でない限り置き換える
     if (this.expr === Expression.DEFAULT_EXPRESSION && element !== ".") {
       newExpr = element;
     }
