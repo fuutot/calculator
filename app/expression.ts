@@ -1,12 +1,18 @@
 export class Expression {
   private expr: string;
+  private result: string;
   private static DEFAULT_EXPRESSION = "0";
+  private static DEFAULT_RESULT = "0";
 
-  constructor(expr: string = Expression.DEFAULT_EXPRESSION) {
+  constructor(
+    expr: string = Expression.DEFAULT_EXPRESSION,
+    result: string = Expression.DEFAULT_RESULT,
+  ) {
     if (!Expression.isValid(expr)) {
       throw new Error("Invalid expression");
     }
     this.expr = expr;
+    this.result = result;
   }
 
   static isValid(expr: string): boolean {
@@ -67,11 +73,25 @@ export class Expression {
     }
   }
 
+  calculate(): Expression {
+    try {
+      // 計算を実行
+      const result = eval(this.expr).toString();
+      return new Expression(result, result);
+    } catch {
+      return new Expression(this.expr, "Error");
+    }
+  }
+
   clear(): Expression {
     return new Expression();
   }
 
-  toString(): string {
+  get_expression(): string {
     return this.expr;
+  }
+
+  get_result(): string {
+    return this.result;
   }
 }

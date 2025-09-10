@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="calculator-container">
       <Display expression={expression} />
-      <Result />
+      <Result expression={expression} />
       <div className="calculator-buttons">
         {[
           "7",
@@ -37,8 +37,9 @@ export default function Home() {
             onClick={() => {
               if (btn !== "=") {
                 setExpression(expression.add(btn));
+              } else {
+                setExpression(expression.calculate());
               }
-              // = の場合の処理は今後追加
             }}
           />
         ))}
@@ -56,12 +57,14 @@ export default function Home() {
 
 export function Display({ expression }: { expression: Expression }) {
   // 計算式を表示するコンポーネント
-  return <div className="calculator-display">{expression.toString()}</div>;
+  return (
+    <div className="calculator-display">{expression.get_expression()}</div>
+  );
 }
 
-export function Result() {
+export function Result({ expression }: { expression: Expression }) {
   // 計算結果を表示するコンポーネント
-  return <div className="calculator-result">{"0"}</div>;
+  return <div className="calculator-result">{expression.get_result()}</div>;
 }
 
 type CalculatorButtonProps = {
