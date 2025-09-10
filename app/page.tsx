@@ -4,12 +4,11 @@ import { Expression } from "./expression";
 
 export default function Home() {
   const [expression, setExpression] = useState(new Expression());
-  const [result, setResult] = useState("0");
 
   return (
     <div className="calculator-container">
       <Display expression={expression} />
-      <Result result={result} />
+      <Result expression={expression} />
       <div className="calculator-buttons">
         {[
           "7",
@@ -39,7 +38,7 @@ export default function Home() {
               if (btn !== "=") {
                 setExpression(expression.add(btn));
               } else {
-                setResult(expression.calculate());
+                setExpression(expression.calculate());
               }
             }}
           />
@@ -49,7 +48,6 @@ export default function Home() {
           className="calculator-btn calculator-clear"
           onClick={() => {
             setExpression(expression.clear());
-            setResult("0");
           }}
         />
       </div>
@@ -59,12 +57,14 @@ export default function Home() {
 
 export function Display({ expression }: { expression: Expression }) {
   // 計算式を表示するコンポーネント
-  return <div className="calculator-display">{expression.toString()}</div>;
+  return (
+    <div className="calculator-display">{expression.get_expression()}</div>
+  );
 }
 
-export function Result({ result }: { result: string }) {
+export function Result({ expression }: { expression: Expression }) {
   // 計算結果を表示するコンポーネント
-  return <div className="calculator-result">{result}</div>;
+  return <div className="calculator-result">{expression.get_result()}</div>;
 }
 
 type CalculatorButtonProps = {
