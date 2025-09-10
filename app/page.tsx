@@ -49,6 +49,7 @@ export default function Home() {
           className="calculator-btn calculator-clear"
           onClick={() => {
             setExpression(expression.clear());
+            setResult("0");
           }}
         />
       </div>
