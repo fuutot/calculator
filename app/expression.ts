@@ -40,7 +40,11 @@ export class Expression {
   }
 
   add(element: string): Expression {
-    return new Expression(this.expr + element); // バリデーションはコンストラクタで行う
+    try {
+      return new Expression(this.expr + element); // バリデーションはコンストラクタで行う
+    } catch (_) {
+      return this; // エラーが発生した場合は変更しない
+    }
   }
 
   clear(): Expression {
