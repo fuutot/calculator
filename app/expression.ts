@@ -67,6 +67,16 @@ export class Expression {
     }
   }
 
+  calculate(): string {
+    try {
+      // 計算を実行
+      const result = eval(this.expr);
+      return result.toString();
+    } catch {
+      return "Error";
+    }
+  }
+
   clear(): Expression {
     return new Expression();
   }

@@ -38,8 +38,9 @@ export default function Home() {
             onClick={() => {
               if (btn !== "=") {
                 setExpression(expression.add(btn));
+              } else {
+                setResult(expression.calculate());
               }
-              // = の場合の処理は今後追加
             }}
           />
         ))}
