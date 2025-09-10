@@ -70,8 +70,9 @@ export class Expression {
   calculate(): string {
     try {
       // 計算を実行
-      const result = eval(this.expr);
-      return result.toString();
+      const result = eval(this.expr).toString();
+      this.expr = result; // 計算結果で式を更新
+      return result;
     } catch {
       return "Error";
     }
