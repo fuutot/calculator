@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Expression } from "./expression";
 import Display from "./components/Display";
+import Result from "./components/Result";
 
 export default function Home() {
   const [expression, setExpression] = useState(new Expression());
@@ -54,11 +55,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
-
-export function Result({ expression }: { expression: Expression }) {
-  // 計算結果を表示するコンポーネント
-  return <div className="calculator-result">{expression.get_result()}</div>;
 }
 
 type CalculatorButtonProps = {

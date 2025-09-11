@@ -1,0 +1,10 @@
+
+.calculatorResult {
+  margin-bottom: 18px;
+  font-size: 32px;
+  color: #f7c873;
+  min-height: 28px;
+  text-align: right;
+  background: none;
+  font-family: 'SF Pro Display', 'Roboto', 'Arial', sans-serif;
+}
