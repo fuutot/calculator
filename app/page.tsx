@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Expression } from "./expression";
 import Display from "./components/Display";
 import Result from "./components/Result";
+import CalculatorButton from "./components/CalculatorButton";
 
 export default function Home() {
   const [expression, setExpression] = useState(new Expression());
@@ -33,9 +34,7 @@ export default function Home() {
           <CalculatorButton
             key={btn}
             label={btn}
-            className={
-              btn === "=" ? "calculator-btn calculator-equal" : "calculator-btn"
-            }
+            variant={btn === "=" ? "equal" : undefined}
             onClick={() => {
               if (btn !== "=") {
                 setExpression(expression.add(btn));
@@ -47,30 +46,12 @@ export default function Home() {
         ))}
         <CalculatorButton
           label="Clear"
-          className="calculator-btn calculator-clear"
+          variant="clear"
           onClick={() => {
             setExpression(expression.clear());
           }}
         />
       </div>
     </div>
-  );
-}
-
-type CalculatorButtonProps = {
-  label: string; // ボタンに表示するテキスト
-  className: string; // ボタンのクラス名
-  onClick: () => void; // ボタンがクリックされたときの処理
-};
-
-export function CalculatorButton({
-  label,
-  className,
-  onClick,
-}: CalculatorButtonProps) {
-  return (
-    <button className={className} onClick={onClick}>
-      {label}
-    </button>
   );
 }

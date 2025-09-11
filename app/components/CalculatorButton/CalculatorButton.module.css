@@ -1,0 +1,45 @@
+/* CalculatorButtonコンポーネント専用スタイル */
+.btn {
+  padding: 18px 0;
+  font-size: 22px;
+  border: none;
+  border-radius: 12px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-family: 'SF Pro Display', 'Roboto', 'Arial', sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-width: 0;
+  width: 100%;
+  aspect-ratio: 2.2 / 1;
+}
+
+.btn:hover {
+  background: #444;
+}
+
+.equal {
+  background: #f7c873;
+  color: #222;
+}
+
+.equal:hover {
+  background: #ffd700;
+}
+
+.clear {
+  grid-column: span 4;
+  background: #555;
+  color: #fff;
+  border-radius: 12px;
+  margin-top: 8px;
+  font-size: 18px;
+  padding: 18px 0;
+  width: 100%;
+  aspect-ratio: auto;
+}
+
+.clear:hover {
+  background: #777;
+}
