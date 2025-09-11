@@ -27,6 +27,16 @@ const BUTTONS = [
 export default function Home() {
   const [expression, setExpression] = useState(new Expression());
 
+  const handleButtonClick = (btn: string) => {
+    if (btn === "=") {
+      setExpression(expression.calculate());
+    } else if (btn === "Clear") {
+      setExpression(expression.clear());
+    } else {
+      setExpression(expression.add(btn));
+    }
+  };
+
   return (
     <div className="calculator-container">
       <Display expression={expression} />
@@ -38,11 +48,7 @@ export default function Home() {
             label={btn}
             variant={btn === "=" ? "equal" : undefined}
             onClick={() => {
-              if (btn !== "=") {
-                setExpression(expression.add(btn));
-              } else {
-                setExpression(expression.calculate());
-              }
+              handleButtonClick(btn);
             }}
           />
         ))}
@@ -50,7 +56,7 @@ export default function Home() {
           label="Clear"
           variant="clear"
           onClick={() => {
-            setExpression(expression.clear());
+            handleButtonClick("Clear");
           }}
         />
       </div>
