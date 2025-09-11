@@ -5,6 +5,25 @@ import Display from "./components/Display";
 import Result from "./components/Result";
 import CalculatorButton from "./components/CalculatorButton";
 
+const BUTTONS = [
+  "7",
+  "8",
+  "9",
+  "/",
+  "4",
+  "5",
+  "6",
+  "*",
+  "1",
+  "2",
+  "3",
+  "-",
+  "0",
+  ".",
+  "=",
+  "+",
+];
+
 export default function Home() {
   const [expression, setExpression] = useState(new Expression());
 
@@ -13,24 +32,7 @@ export default function Home() {
       <Display expression={expression} />
       <Result expression={expression} />
       <div className="calculator-buttons">
-        {[
-          "7",
-          "8",
-          "9",
-          "/",
-          "4",
-          "5",
-          "6",
-          "*",
-          "1",
-          "2",
-          "3",
-          "-",
-          "0",
-          ".",
-          "=",
-          "+",
-        ].map((btn) => (
+        {BUTTONS.map((btn) => (
           <CalculatorButton
             key={btn}
             label={btn}
