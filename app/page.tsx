@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Expression } from "./expression";
+import Display from "./components/Display";
 
 export default function Home() {
   const [expression, setExpression] = useState(new Expression());
@@ -52,13 +53,6 @@ export default function Home() {
         />
       </div>
     </div>
-  );
-}
-
-export function Display({ expression }: { expression: Expression }) {
-  // 計算式を表示するコンポーネント
-  return (
-    <div className="calculator-display">{expression.get_expression()}</div>
   );
 }
 

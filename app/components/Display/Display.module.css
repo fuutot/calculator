@@ -1,0 +1,11 @@
+/* Displayコンポーネント専用のスタイル */
+.calculatorDisplay {
+  margin-bottom: 6px;
+  font-size: 28px;
+  min-height: 40px;
+  text-align: right;
+  color: #fff;
+  background: none;
+  font-family: 'SF Pro Display', 'Roboto', 'Arial', sans-serif;
+  letter-spacing: 1px;
+}
