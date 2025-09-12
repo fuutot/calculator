@@ -1,4 +1,4 @@
-import { Expression } from "@/lib/expression";
+import { Expression } from "@/app/expression";
 import styles from "./Result.module.css";
 
 export default function Result({ expression }: { expression: Expression }) {
