@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Expression } from "./expression";
+import { Expression } from "../lib/expression";
 import Display from "./components/Display";
 import Result from "./components/Result";
 import CalculatorButton from "./components/CalculatorButton";
