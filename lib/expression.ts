@@ -22,43 +22,12 @@ export class Expression {
     if (!Expression.isExpectedChars(expr)) {
       return false;
     }
-    // 先頭が演算子になっていないか、演算子が連続していないかをチェック
-    if (!Expression.isValidSequence(expr)) {
-      return false;
-    }
-    // 無効な数が含まれていないかをチェック
-    if (!Expression.hasValidNumber(expr)) {
-      return false;
-    }
     return true;
   }
 
   private static isExpectedChars(expr: string): boolean {
     const validChars = /^[0-9+\-*/.]+$/;
     return validChars.test(expr);
-  }
-
-  private static isValidSequence(expr: string): boolean {
-    // 演算子が連続していないかをチェック
-    const invalidSequence = /[+\-*/.]{2,}/;
-    if (invalidSequence.test(expr)) {
-      return false;
-    }
-    // 先頭に演算子が来ていないかをチェック
-    if (/[+\-*/.]/.test(expr.charAt(0))) {
-      return false;
-    }
-    return true;
-  }
-
-  private static hasValidNumber(expr: string): boolean {
-    // 01, 02, 003 など0で始まる不正な数値が含まれていないかチェック
-    // ただし0単体や0.1などは許可
-    const invalidZeroNumber = /(^|[+\-*/(])0[0-9]+/;
-    if (invalidZeroNumber.test(expr)) {
-      return false;
-    }
-    return true;
   }
 
   add(element: string): Expression {
