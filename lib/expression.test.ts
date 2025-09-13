@@ -55,4 +55,13 @@ describe("Expression", () => {
       expect(newExpr.get_expression()).toBe("3+5");
     });
   });
+
+  describe("calculate", () => {
+    it("should return 'Error' for invalid expressions", () => {
+      const expr = new Expression("3+5*");
+      const resultExpr = expr.calculate();
+      expect(resultExpr.get_expression()).toBe("3+5*");
+      expect(resultExpr.get_result()).toBe("Error");
+    });
+  });
 });
