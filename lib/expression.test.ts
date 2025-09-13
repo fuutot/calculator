@@ -29,4 +29,30 @@ describe("Expression", () => {
       expect(() => new Expression("3a+5")).toThrow("Invalid expression");
     });
   });
+
+  describe("add", () => {
+    it("should add element to the expression", () => {
+      const expr = new Expression("3+5");
+      const newExpr = expr.add("2");
+      expect(newExpr.get_expression()).toBe("3+52");
+    });
+
+    it("should replace default expression '0' when adding non-dot element", () => {
+      const expr = new Expression();
+      const newExpr = expr.add("7");
+      expect(newExpr.get_expression()).toBe("7");
+    });
+
+    it("should append dot to default expression '0'", () => {
+      const expr = new Expression();
+      const newExpr = expr.add(".");
+      expect(newExpr.get_expression()).toBe("0.");
+    });
+
+    it("should not change expression if adding invalid element", () => {
+      const expr = new Expression("3+5");
+      const newExpr = expr.add("a");
+      expect(newExpr.get_expression()).toBe("3+5");
+    });
+  });
 });
