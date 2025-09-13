@@ -1,5 +1,10 @@
-/** @type {import("ts-jest/dist/types").InitialOptionsTsJest} */
-module.exports = {
+import nextJest from "next/jest.js";
+
+const createJestConfig = nextJest({
+  dir: "./",
+});
+
+const customJestConfig = {
   preset: "ts-jest",
   testEnvironment: "node",
   transform: {
@@ -9,3 +14,5 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/$1", // Jestに追加したいエイリアス
   },
 };
+
+export default createJestConfig(customJestConfig);
