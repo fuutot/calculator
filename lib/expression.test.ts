@@ -64,4 +64,13 @@ describe("Expression", () => {
       expect(resultExpr.get_result()).toBe("Error");
     });
   });
+
+  describe("clear", () => {
+    it("should reset expression and result to default values", () => {
+      const expr = new Expression("3+5", "8");
+      const clearedExpr = expr.clear();
+      expect(clearedExpr.get_expression()).toBe("0");
+      expect(clearedExpr.get_result()).toBe("0");
+    });
+  });
 });
