@@ -1,4 +1,4 @@
-import { e, evaluate } from "mathjs";
+import { evaluate } from "mathjs";
 
 export class Expression {
   private expr: string;
