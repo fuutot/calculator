@@ -1,4 +1,10 @@
-import { evaluate } from "mathjs";
+import { create, all, ConfigOptions } from "mathjs";
+
+const config: ConfigOptions = {
+  number: "BigNumber",
+  precision: 20,
+};
+const math = create(all, config);
 
 export class Expression {
   private expr: string;
@@ -47,7 +53,7 @@ export class Expression {
   calculate(): Expression {
     try {
       // 計算を実行
-      const result = evaluate(this.expr).toString();
+      const result = math.evaluate(this.expr).toString();
       return new Expression(result, result);
     } catch {
       return new Expression(this.expr, "Error");
